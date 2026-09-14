@@ -1,7 +1,19 @@
-import { MainButton } from "./styles";
+import { ButtonRed, ButtonWhite } from "./styles";
 
-function Button({children}) {
-    return <MainButton>{children}</MainButton>
+function Button({children, red, ...rest}) {
+    return (
+    
+      <>{red ? 
+
+      (<ButtonRed {...rest}>{children}</ButtonRed>
+
+      ) : (
+      <ButtonWhite {...rest}>{children}</ButtonWhite>
+      
+      )}
+  
+</>
+    )
     
   }
   

@@ -1,72 +1,93 @@
-import api from "../../services/Api";
 import { useState, useEffect } from "react";
 import Button from "../../componets/Button";
+import { getImages } from "../../utils/getImages";
+import Modal from "../../componets/Modal";
+import { useNavigate } from "react-router-dom";
 import {
   Background,
   Info,
   Poster,
   Container,
-  
-
+  ContainerButtons,
 } from "./styles";
+import Slider from "../../componets/slider";
+
+
+import { 
+  getMovies, 
+  getTopMovies, 
+  getTopSeries, 
+  getPopularSeries, 
+  getTopPeople 
+} from "../../services/getData";
 
 
 function Home() {
-
-  const [movie, setMovie] = useState()
+  const [showModal, setShowModal] = useState(false);
+  const [movie, setMovie] = useState();
+  const [topMovie, setTopMovie] = useState();
+  const [topSeries, setTopSeries] = useState();
+  const [popularSeries, setPopularSeries] = useState();
+  const [topPeople, setTopPeople] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    async function getMovies() {
-      const { data: { results } } = await api.get('/movie/popular');
+    async function getAllData() {
+    
+      try {
+        const [movies, topMovies, topSeriesData, popularSeriesData, people] = await Promise.all([
+          getMovies(),
+          getTopMovies(),
+          getTopSeries(),
+          getPopularSeries(),
+          getTopPeople()
+        ]);
 
-      setMovie(results[1])
-
-
-
+      
+        setMovie(movies[0]);
+        setTopMovie(topMovies);
+        setTopSeries(topSeriesData);
+        setPopularSeries(popularSeriesData);
+        setTopPeople(people);
+      } catch (error) {
+        console.error("Erro ao carregar os dados da API:", error);
+      }
     }
 
-
-    getMovies()
-
-
-  }, [])
-
-
+    getAllData();
+  }, []);
 
   return (
-
     <>
-
       {movie && (
-
-        <Background img={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}>
+        <Background $img={getImages(movie.backdrop_path)}>
+          {showModal && 
+          <Modal movieId={movie.id} setShowModal={setShowModal} />}
 
           <Container>
             <Info>
-
               <h1>{movie.title}</h1>
               <p>{movie.overview}</p>
 
-              <div>
-                <Button>Assistir Agora</Button>
-                <Button> Assistir Trailer</Button>
-              </div>
-
+              <ContainerButtons>
+                <Button onClick={() => navigate(`/detalhe/${movie.id}`)} red={true}>Assistir Agora</Button>
+                <Button onClick={() => setShowModal(true)} red={false}>Assistir Trailer</Button>
+              </ContainerButtons>
             </Info>
 
             <Poster>
-
-              <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} />
-
+              <img src={getImages(movie.poster_path)} alt={movie.title} />
             </Poster>
           </Container>
-
-
         </Background>
       )}
 
+      {topMovie && <Slider info={topMovie} title={"Top Filmes"}/>}
+      {topSeries && <Slider info={topSeries} title={"Top Series"}/>}
+      {popularSeries && <Slider info={popularSeries} title={"Séries Populares"}/>}
+      {topPeople && <Slider info={topPeople} title={"Artistas Populares"}/>}
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

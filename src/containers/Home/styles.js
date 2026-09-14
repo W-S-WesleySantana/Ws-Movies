@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Background = styled.div`
-background-image: url(${(props) => props.img});
+background-image: url(${(props) => props.$img});
 height: 100vh;
 background-position: center;
 background-size: cover;
@@ -55,7 +55,13 @@ p{
 export const Poster = styled.div`
 z-index: 2;
 img{
-    width: 300px;
-    border-radius: 30px;
+width: 300px;
+border-radius: 30px;
 }
+`
+
+export const ContainerButtons = styled.div`
+display: flex;
+gap: 20px;
+margin-top: 30px;
 `
