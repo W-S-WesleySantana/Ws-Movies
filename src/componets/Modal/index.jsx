@@ -1,22 +1,20 @@
 import { useEffect, useState } from "react";
-import { getMovie } from "../../services/getData";
 import { Container, Background } from "./styles";
+import {getMovieVideos} from "../../services/getData";
 
-
-
-function Modal({ movieId,setShowModal }) {
+function Modal({ movieId, setShowModal }) {
   const [movie, setMovie] = useState();
 
   useEffect(() => {
-    async function getMovie() {
-      setMovie (await getMovie(movieId))
+    async function getMovies() {
+      setMovie (await getMovieVideos(movieId));
+      
     }
     
+    getMovies();
+}, []);
 
-    getMovie();
-  }, []);
-
-  return (
+return (
     <Background onClick={() => setShowModal(false)}>
       {movie && (
         <Container>

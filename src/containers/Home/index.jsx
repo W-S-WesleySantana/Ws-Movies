@@ -13,12 +13,12 @@ import {
 import Slider from "../../componets/slider";
 
 
-import { 
-  getMovies, 
-  getTopMovies, 
-  getTopSeries, 
-  getPopularSeries, 
-  getTopPeople 
+import {
+  getMovies,
+  getTopMovies,
+  getTopSeries,
+  getPopularSeries,
+  getTopPeople
 } from "../../services/getData";
 
 
@@ -31,28 +31,30 @@ function Home() {
   const [topPeople, setTopPeople] = useState();
   const navigate = useNavigate();
 
+
   useEffect(() => {
     async function getAllData() {
-    
-      try {
-        const [movies, topMovies, topSeriesData, popularSeriesData, people] = await Promise.all([
-          getMovies(),
-          getTopMovies(),
-          getTopSeries(),
-          getPopularSeries(),
-          getTopPeople()
-        ]);
 
-      
-        setMovie(movies[0]);
-        setTopMovie(topMovies);
-        setTopSeries(topSeriesData);
-        setPopularSeries(popularSeriesData);
-        setTopPeople(people);
-      } catch (error) {
-        console.error("Erro ao carregar os dados da API:", error);
-      }
+      Promise.all([
+        getMovies(),
+        getTopMovies(),
+        getTopSeries(),
+        getPopularSeries(),
+        getTopPeople()
+      ])
+      .then(([movie, topMovies, topSeries, popularSeries, topPeople]) => {
+        setMovie(movie)
+        setTopMovie(topMovies)
+        setTopSeries(topSeries)
+        setPopularSeries( popularSeries)
+        setTopPeople(topPeople)
+
+
+      })
+      .catch((error) => console.error(error));
+
     }
+     
 
     getAllData();
   }, []);
@@ -61,8 +63,8 @@ function Home() {
     <>
       {movie && (
         <Background $img={getImages(movie.backdrop_path)}>
-          {showModal && 
-          <Modal movieId={movie.id} setShowModal={setShowModal} />}
+          {showModal &&
+            <Modal movieId={movie.id} setShowModal={setShowModal} />}
 
           <Container>
             <Info>
@@ -74,7 +76,7 @@ function Home() {
                 <Button onClick={() => setShowModal(true)} red={false}>Assistir Trailer</Button>
               </ContainerButtons>
             </Info>
-
+ 
             <Poster>
               <img src={getImages(movie.poster_path)} alt={movie.title} />
             </Poster>
@@ -82,10 +84,10 @@ function Home() {
         </Background>
       )}
 
-      {topMovie && <Slider info={topMovie} title={"Top Filmes"}/>}
-      {topSeries && <Slider info={topSeries} title={"Top Series"}/>}
-      {popularSeries && <Slider info={popularSeries} title={"Séries Populares"}/>}
-      {topPeople && <Slider info={topPeople} title={"Artistas Populares"}/>}
+      {topMovie && <Slider info={topMovie} title={"Top Filmes"} />}
+      {topSeries && <Slider info={topSeries} title={"Top Series"} />}
+      {popularSeries && <Slider info={popularSeries} title={"Séries Populares"} />}
+      {topPeople && <Slider info={topPeople} title={"Artistas Populares"} />}
     </>
   );
 }

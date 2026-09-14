@@ -1,3 +1,4 @@
+import { data } from "react-router-dom";
 import api from "./api";
 
 export async function getMovies() {
@@ -5,7 +6,7 @@ export async function getMovies() {
         data: { results }
     } = await api.get('/movie/popular');
 
-    return results
+    return results[0]
     }
 
 
@@ -24,7 +25,6 @@ export async function  getTopSeries() {
 
     
 
-
     return results
 
     }
@@ -40,7 +40,7 @@ export async function getPopularSeries() {
 
 
 
-export async function getTopPeople() {
+    export async function getTopPeople() {
     const {
         data: { results } 
         } = await api.get('/person/popular');
@@ -50,9 +50,35 @@ export async function getTopPeople() {
     return results
     }
 
-    export async function getMovie(movieId) {
-        const { data: { results } 
-            } = await api.get(`/movie/${movieId}/videos`);
+    export async function getMovieVideos(movieId) {
+        const { 
+            data: { results } 
+        } = await api.get(`/movie/${movieId}/videos`);
 
-            return results[0]
+        return results
+    } 
+    
+
+    export async function getMovieCredits(movieId) {
+        const 
+            { data } = await api.get(`/movie/${movieId}/credits`);
+
+        return data
+
+    } 
+
+    export async function getMovieSimilar(movieId) {
+        const { 
+            data: { results } 
+        } = await api.get(`/movie/${movieId}/similar`);
+
+        return results
+
+
+    } 
+    export async function getMovieById(movieId) {
+        const 
+            { data } = await api.get(`/movie/${movieId}`);
+
+        return data
     } 
