@@ -7,7 +7,7 @@ function Slider({info, title}) {
     return (
     
       <>
-
+ 
 <Container>
   <h2>{title}</h2>
   <Swiper
