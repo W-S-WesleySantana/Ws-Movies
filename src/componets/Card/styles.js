@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import {toRem} from "../../utils/toRem";
 
 export const Container = styled.div`
 
@@ -9,15 +9,15 @@ justify-content: center;
 align-items: center;
 
 img{
-    border-radius: 30px;
-    width:300px;
+    border-radius:${toRem(30)};
+    width:${toRem(300)};
     height: 100%;
     
 }
 
 h3{
     color: #fff;
-    margin-top: 15px;
+    margin-top:${toRem(15)};
 }
 
 `

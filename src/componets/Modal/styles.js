@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { toRem } from "../../utils/toRem";
 
 
 export const Background = styled.div`
@@ -21,8 +22,8 @@ display: flex;
 justify-content: center;
 align-items: center;
 position:fixed;
-padding: 50px;
-max-width: 1200px;
+padding:  ${toRem(50)};
+max-width:  ${toRem(1200)};
 
 iframe{
     border: none;

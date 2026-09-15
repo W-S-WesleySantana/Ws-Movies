@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { toRem } from '../../utils/toRem';
 
 const scale = keyframes`
 from{
@@ -34,7 +35,7 @@ position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 120px;
+    height:  ${toRem(120)};
     background-image: linear-gradient(to top, #0f0f0f, rgba(0,0,0,0));
 }
 
@@ -45,13 +46,13 @@ display: flex;
 justify-content: center;
 align-items: flex-start;
 height: 100%;
-max-width: 1500px;
-margin-top: -100px;
+max-width:  ${toRem(1500)};
+margin-top: - ${toRem(-100)};
 
 `
 export const Cover = styled.div`
 
-padding: 20px;
+padding:  ${toRem(20)};
 display: flex;
 align-items: flex-start;
 height: 100%;
@@ -59,9 +60,9 @@ z-index: 99;
 
 
 img{
-    width: 400px;
-    border-radius: 30px;
-    box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+    width:  ${toRem(400)};
+    border-radius:  ${toRem(30)};
+    box-shadow: rgb(100 100 111 / 20%)  ${toRem(0,7,29,0)};
     animation: ${scale} 0.5s linear;
 
 }
@@ -69,7 +70,7 @@ img{
 `
 export const Info = styled.div`
 
-padding: 20px;
+padding:  ${toRem(20)};
 width: 50%;
 z-index: 99;
 display: flex;
@@ -78,7 +79,7 @@ flex-direction: column;
 
 
 h2{
-    font-size:50px;
+    font-size: ${toRem(50)};
     font-weight:700 ;
     color: #fff;
 
@@ -88,8 +89,8 @@ h2{
 p{
     font-weight: 700;
     color: #fff;
-    margin-top: 20px;
-    margin-bottom: 30px;
+    margin-top:  ${toRem(20)};
+    margin-bottom:  ${toRem(30)};
 }
 `
 
@@ -99,24 +100,24 @@ display: flex;
 align-items: center;
 flex-direction: column;
 justify-content: center;
-padding: 20px;
+padding:  ${toRem(20)};
 width: 100%;
 
 div{
     display: flex;
     flex-direction: column;
-    max-width: 1000px;
+    max-width:  ${toRem(1000)};
     width: 100%;
     height: 100%;
-    margin: 20px 0;
+    margin: ${toRem(20,0)};
 
 }
 
 h4{
     color: #fff;
-    font-size: 20px;
+    font-size:  ${toRem(20)};
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom:  ${toRem(10)};
 }
 
 iframe{

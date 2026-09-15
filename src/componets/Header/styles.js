@@ -1,4 +1,5 @@
 import styled  from "styled-components";
+import { toRem } from "../../utils/toRem";
 
 
 
@@ -9,23 +10,27 @@ width: 100vw;
 height: 12vh;
 top: 0;
 display: flex;
-padding:10px 50px;
+padding:${toRem(10,50)};
 justify-content: space-between;
 align-items: center;
 background-color: ${props => props.$changeBackground ? "rgba(0, 0, 0, 0.8)" : "transparent"};
 transition: background-color 0.6s ease-in-out;
-min-height: 100px;
+min-height: ${toRem(100)};
+
 
 img{
     width:25%;
 
+  
 }
+
+
 
 `
 export const Menu = styled.ul`
 display: flex;
 list-style: none;
-gap:80px;
+gap:${toRem(80)};
 
 `
 export const Li = styled.li`
@@ -41,9 +46,9 @@ a{
 
     &:hover{
         color: #f00;
-        box-shadow: 2px -4px 62px 35px rgba(255, 0, 0, 0.55);
+        box-shadow:  ${toRem(2,-4,62,35)} rgba(255, 0, 0, 0.55);
         -webkit-box-shadow: 2px -4px 62px 35px rgba(255, 0, 0, 0.55);
-        border-radius: 10px;
+        border-radius:  ${toRem(10)};
         font-weight: 900;
 
 
@@ -55,7 +60,7 @@ a{
     width: ${props => props.isActive ? "100%" : 0};
     background-color: #b6b2b2;
     position: absolute;
-    bottom: -10px;
+    bottom: ${toRem(-10)};
     left: 50%;
     transform: translateX(-50%);
     transition: width 0.5s ease-in-out;
@@ -64,4 +69,8 @@ a{
 &:hover::after{
     width: 100%;
 }
+
+
+
+
 `

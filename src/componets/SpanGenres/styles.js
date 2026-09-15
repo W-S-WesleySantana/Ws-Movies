@@ -1,16 +1,17 @@
 import styled  from "styled-components";
+import { toRem } from "../../utils/toRem";
 
 
 export const Container = styled.div`
 display: flex;
-margin-top: 30px;
-gap: 10px;
+margin-top:  ${toRem(30)};
+gap:  ${toRem(10)};
 
 span{
-    padding: 8px 18px;
-    border: 2px solid #fff;
-    border-radius:30px;
-    font-size: 12px;
+    padding: ${toRem(8,18)};
+    border:  ${toRem(2)} solid #fff;
+    border-radius: ${toRem(30)};
+    font-size:  ${toRem(12)};
     font-weight: 600;
     background-color: #0f0f0f;
     color: #fff;

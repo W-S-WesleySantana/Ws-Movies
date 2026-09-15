@@ -67,7 +67,7 @@ function Home() {
 
           <Container>
             <Info>
-              <h1>{movie.title}</h1>
+              <h1>{movie.title}</h1> 
               <p>{movie.overview}</p>
 
               <ContainerButtons>

@@ -1,17 +1,18 @@
 import styled  from "styled-components";
+import { toRem } from "../../utils/toRem";
 
 
 export const Title = styled.h4`
 color: #fff;
-font-size: 28px;
+font-size: ${toRem(28)};
 font-weight: 700;
 
 `
 
 export const Container = styled.div`
 display: flex;
-margin-top: 30px;
-gap: 10px;
+margin-top: ${toRem(30)};
+gap: ${toRem(10)};
 
 div{
 display: flex;
@@ -23,6 +24,6 @@ color: #fff;
 }
 
 img{
-height: 200px;
+height: ${toRem(200)};
 }
 `

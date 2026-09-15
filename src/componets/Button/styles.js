@@ -1,4 +1,5 @@
 import styled, {css}  from "styled-components";
+import { toRem } from "../../utils/toRem";
 
 const ButtonStyled = css`
 border: 3px solid #fff;
@@ -8,7 +9,7 @@ color:#fff;
 border-radius: 30px;
 padding: 10px 20px;
 cursor: pointer;
-font-size: 20px;
+font-size: ${toRem(20)};
 font-weight: 500;
 
 &:hover {
@@ -27,11 +28,11 @@ export const ButtonRed = styled.button`
 ${ButtonStyled}
 
 background: #ff0000;
-border: 4px solid transparent;
-box-shadow: 0px 0px 7px 8px rgb(255 0 0 / 30%);
+border: ${toRem(4)} solid transparent;
+box-shadow:  ${toRem(0, 0, 7, 8)} rgb(255 0 0 / 30%);
 
 &:hover {
-box-shadow: 0px 0px 7px 15px rgb(255 0 0 / 30%);
+box-shadow:${toRem(0, 0, 7, 15)} rgb(255 0 0 / 30%);
 background:  #ff0000;
 color: #fff;
 }

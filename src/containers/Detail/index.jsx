@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getImages } from '../../utils/getImages';
 import SpanGenres from '../../componets/SpanGenres'
-import Credits from '../../componets/Credits'
 import Slider from '../../componets/slider'
+import Credits from '../../componets/Credits'
 
 import {
   Container,
