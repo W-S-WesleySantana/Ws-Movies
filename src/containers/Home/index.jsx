@@ -54,7 +54,6 @@ function Home() {
       .catch((error) => console.error(error));
 
     }
-     
 
     getAllData();
   }, []);
@@ -76,7 +75,7 @@ function Home() {
                 <Button onClick={() => setShowModal(true)} red={false}>Assistir Trailer</Button>
               </ContainerButtons>
             </Info>
- 
+
             <Poster>
               <img src={getImages(movie.poster_path)} alt={movie.title} />
             </Poster>
